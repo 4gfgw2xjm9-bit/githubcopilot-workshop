@@ -29,4 +29,5 @@ export interface Product {
     image?: string;
     reviews: Review[];
     inStock: boolean;
+    category?: string;
 }
