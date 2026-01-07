@@ -167,18 +167,19 @@ describe('ProductsPage', () => {
 
         const searchInput = screen.getByPlaceholderText(/search products by name/i);
         
-        // Type 'a' - should show Apple
+        // Type 'a' - should show both Apple and Grapes (both contain 'a')
         fireEvent.change(searchInput, { target: { value: 'a' } });
         expect(screen.getByText('Apple')).toBeInTheDocument();
         expect(screen.getByText('Grapes')).toBeInTheDocument();
         
-        // Type 'ap' - should still show Apple
-        fireEvent.change(searchInput, { target: { value: 'ap' } });
+        // Type 'appl' - should show only Apple (Grapes doesn't contain 'appl')
+        fireEvent.change(searchInput, { target: { value: 'appl' } });
         expect(screen.getByText('Apple')).toBeInTheDocument();
-        expect(screen.getByText('Grapes')).toBeInTheDocument();
+        expect(screen.queryByText('Grapes')).not.toBeInTheDocument();
         
-        // Type 'app' - should show only Apple
-        fireEvent.change(searchInput, { target: { value: 'app' } });
+        // Type 'apple' - should show only Apple
+        fireEvent.change(searchInput, { target: { value: 'apple' } });
         expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.queryByText('Grapes')).not.toBeInTheDocument();
     });
 });
