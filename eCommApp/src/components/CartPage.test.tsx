@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import CartPage from './CartPage';
 import { CartContext, CartItem } from '../context/CartContext';
@@ -63,7 +63,7 @@ describe('CartPage', () => {
 
     it('displays cart items when cart has items', () => {
         renderWithCartContext();
-        
+
         expect(screen.getByText('Your Cart')).toBeInTheDocument();
         expect(screen.getByText('Test Product 1')).toBeInTheDocument();
         expect(screen.getByText('Test Product 2')).toBeInTheDocument();
@@ -71,5 +71,39 @@ describe('CartPage', () => {
         expect(screen.getByText('Price: $49.99')).toBeInTheDocument();
         expect(screen.getByText('Quantity: 2')).toBeInTheDocument();
         expect(screen.getByText('Quantity: 1')).toBeInTheDocument();
+    });
+
+    it('displays "Your cart is empty." when cart is empty', () => {
+        renderWithCartContext({
+            cartItems: [],
+            addToCart: vi.fn(),
+            clearCart: vi.fn()
+        });
+
+        expect(screen.getByText('Your cart is empty.')).toBeInTheDocument();
+        expect(screen.queryByText('Test Product 1')).not.toBeInTheDocument();
+    });
+
+    it('displays the checkout button when cart has items', () => {
+        renderWithCartContext();
+        expect(screen.getByRole('button', { name: /checkout/i })).toBeInTheDocument();
+    });
+
+    it('renders CheckoutModal when checkout button is clicked', () => {
+        renderWithCartContext();
+        const checkoutBtn = screen.getByRole('button', { name: /checkout/i });
+        fireEvent.click(checkoutBtn);
+
+        expect(screen.getByTestId('checkout-modal')).toBeInTheDocument();
+    });
+
+    it('closes CheckoutModal when cancel is clicked', () => {
+        renderWithCartContext();
+        fireEvent.click(screen.getByRole('button', { name: /checkout/i }));
+
+        const cancelBtn = screen.getByTestId('cancel-checkout');
+        fireEvent.click(cancelBtn);
+
+        expect(screen.queryByTestId('checkout-modal')).not.toBeInTheDocument();
     });
 });
