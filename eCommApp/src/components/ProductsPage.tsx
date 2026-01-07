@@ -9,6 +9,7 @@ const ProductsPage = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [searchTerm, setSearchTerm] = useState('');
     const cartContext = useContext(CartContext);
 
     if (!cartContext) {
@@ -56,6 +57,10 @@ const ProductsPage = () => {
         }
     };
 
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading) {
         return (
             <div className="app">
@@ -74,34 +79,47 @@ const ProductsPage = () => {
             <main className="main-content">
                 <div className="products-container">
                     <h2>Our Products</h2>
-                    <div className="products-grid">
-                        {products.map((product) => (
-                            <div key={product.id || product.name} className="product-card">
-                                {product.image && (
-                                    <img
-                                        src={`products/productImages/${product.image}`}
-                                        alt={product.name}
-                                        className="product-image"
-                                        onClick={() => setSelectedProduct(product)}
-                                    />
-                                )}
-                                <div className="product-info">
-                                    <h3 className="product-name">{product.name}</h3>
-                                    <p className="product-price">${product.price.toFixed(2)}</p>
-                                    {product.description && (
-                                        <p className="product-description">{product.description}</p>
-                                    )}
-                                    <button 
-                                        onClick={() => addToCart(product)}
-                                        className={`add-to-cart-btn ${product.inStock ? '' : 'disabled'}`}
-                                        disabled={!product.inStock}
-                                    >
-                                        {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Search products by name..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="search-input"
+                        />
                     </div>
+                    {filteredProducts.length === 0 ? (
+                        <div className="no-products-message">No products found</div>
+                    ) : (
+                        <div className="products-grid">
+                            {filteredProducts.map((product) => (
+                                <div key={product.id || product.name} className="product-card">
+                                    {product.image && (
+                                        <img
+                                            src={`products/productImages/${product.image}`}
+                                            alt={product.name}
+                                            className="product-image"
+                                            onClick={() => setSelectedProduct(product)}
+                                        />
+                                    )}
+                                    <div className="product-info">
+                                        <h3 className="product-name">{product.name}</h3>
+                                        <p className="product-price">${product.price.toFixed(2)}</p>
+                                        {product.description && (
+                                            <p className="product-description">{product.description}</p>
+                                        )}
+                                        <button 
+                                            onClick={() => addToCart(product)}
+                                            className={`add-to-cart-btn ${product.inStock ? '' : 'disabled'}`}
+                                            disabled={!product.inStock}
+                                        >
+                                            {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </main>
             <Footer />

@@ -113,4 +113,72 @@ describe('ProductsPage', () => {
         // Verification: The modal should still be open and rendering with the product
         expect(screen.getByTestId('review-modal')).toBeInTheDocument();
     });
+
+    it('filters products by search term', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.getByText('Apple')).toBeInTheDocument();
+            expect(screen.getByText('Grapes')).toBeInTheDocument();
+        });
+
+        const searchInput = screen.getByPlaceholderText(/search products by name/i);
+        fireEvent.change(searchInput, { target: { value: 'apple' } });
+
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.queryByText('Grapes')).not.toBeInTheDocument();
+    });
+
+    it('filters products case-insensitively', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.getByText('Apple')).toBeInTheDocument();
+        });
+
+        const searchInput = screen.getByPlaceholderText(/search products by name/i);
+        fireEvent.change(searchInput, { target: { value: 'APPLE' } });
+
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+    });
+
+    it('displays "No products found" message when no matches', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.getByText('Apple')).toBeInTheDocument();
+        });
+
+        const searchInput = screen.getByPlaceholderText(/search products by name/i);
+        fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
+
+        expect(screen.getByText(/no products found/i)).toBeInTheDocument();
+        expect(screen.queryByText('Apple')).not.toBeInTheDocument();
+        expect(screen.queryByText('Grapes')).not.toBeInTheDocument();
+    });
+
+    it('updates filter in real-time as user types', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.getByText('Apple')).toBeInTheDocument();
+            expect(screen.getByText('Grapes')).toBeInTheDocument();
+        });
+
+        const searchInput = screen.getByPlaceholderText(/search products by name/i);
+        
+        // Type 'a' - should show Apple
+        fireEvent.change(searchInput, { target: { value: 'a' } });
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.getByText('Grapes')).toBeInTheDocument();
+        
+        // Type 'ap' - should still show Apple
+        fireEvent.change(searchInput, { target: { value: 'ap' } });
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.getByText('Grapes')).toBeInTheDocument();
+        
+        // Type 'app' - should show only Apple
+        fireEvent.change(searchInput, { target: { value: 'app' } });
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+    });
 });
