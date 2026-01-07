@@ -1,56 +1,77 @@
-# The Daily Harvest
+# 🍎 The Daily Harvest
 
-A modern TypeScript-based shopping website built with React and Vite.
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-4.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-3.2-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
 
-## 🚀 Getting Started
+> **Fresh code, picked daily.** Modernized e-commerce experience built for speed, safety, and scalability.
 
-### Prerequisites
+---
 
-- Node.js (version 18 or higher)
-- npm or yarn
+## 🚀 Quick Start
 
-### Installation
+Get your local marketplace up and running in under 2 minutes.
 
-1. Navigate to the eCommApp directory:
-   ```bash
-   cd eCommApp
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser and visit `http://localhost:3000`
-
-## 📁 Project Structure
-
-```
-eCommApp/
-├── public/              # Static assets
-├── src/
-│   ├── components/      # Reusable React components
-│   ├── types/          # TypeScript type definitions
-│   ├── utils/          # Utility functions
-│   ├── App.tsx         # Main App component
-│   ├── App.css         # App styles
-│   ├── main.tsx        # Application entry point
-│   └── index.css       # Global styles
-├── index.html          # HTML template
-├── package.json        # Project dependencies
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite configuration
-└── README.md          # This file
+### 1. Installation
+```bash
+cd eCommApp
+npm install
 ```
 
-## 🛠️ Available Scripts
+### 2. Launch Development
+```bash
+npm run dev
+```
+🌐 **URL**: [http://localhost:3000](http://localhost:3000)
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+### 3. Build for Production
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **UI Framework**: [React 18](https://reactjs.org/) (Functional Components, Hooks, Context API)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (100% Type Safety)
+- **Build Tool**: [Vite](https://vitejs.dev/) (Instant HMR, Lightning Fast Builds)
+- **Testing**: [Vitest](https://vitest.dev/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- **Styling**: Vanilla CSS (Custom tokens & responsive layouts)
+
+---
+
+## 🧪 Testing Suite
+
+We maintain a high bar for code quality. Our test suite covers utility logic, state management, and component interactions.
+
+| Command | Purpose |
+| :--- | :--- |
+| `npm run test` | Run tests in watch mode |
+| `npm run test:run` | Single CI-style run |
+| `npm run test:coverage` | Generate coverage report |
+| `npm run test:ui` | Open Vitest UI dashboard |
+
+---
+
+## 📁 Project Architecture
+
+- **`src/components/`**: Reusable React UI components and pages.
+- **`src/context/`**: Global state management (Shopping Cart).
+- **`src/types/`**: Centralized TypeScript definitions.
+- **`src/utils/`**: Helper functions (pricing, validation).
+- **`src/test/`**: Shared testing utilities and setup.
+
+---
+
+## 📜 Available Scripts
+
+- `npm run dev`: Start dev server
+- `npm run build`: Production build (to `/dist`)
+- `npm run preview`: Serve production build locally
+- `npm run lint`: Static analysis with ESLint
+
+---
+© 2025 The Daily Harvest. Developed as part of the GitHub Copilot Workshop.
