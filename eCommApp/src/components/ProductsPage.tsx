@@ -58,7 +58,7 @@ const ProductsPage = () => {
     };
 
     // Get unique categories from products
-    const categories = ['All', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))];
+    const categories = ['All', ...Array.from(new Set(products.map(p => p.category).filter((c): c is string => Boolean(c))))];
 
     // Filter products based on selected category
     const filteredProducts = selectedCategory === 'All' 
