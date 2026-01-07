@@ -30,7 +30,8 @@ const mockProducts = [
         description: 'Fresh apple',
         image: 'apple.jpg',
         reviews: [],
-        inStock: true
+        inStock: true,
+        category: 'Fruit'
     },
     {
         id: '2',
@@ -39,7 +40,8 @@ const mockProducts = [
         description: 'Sweet grapes',
         image: 'grapes.jpg',
         reviews: [],
-        inStock: false
+        inStock: false,
+        category: 'Berries'
     }
 ];
 
@@ -112,5 +114,69 @@ describe('ProductsPage', () => {
 
         // Verification: The modal should still be open and rendering with the product
         expect(screen.getByTestId('review-modal')).toBeInTheDocument();
+    });
+
+    it('renders category filter buttons', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.queryByText(/loading products/i)).not.toBeInTheDocument();
+        });
+
+        expect(screen.getByText('All')).toBeInTheDocument();
+        expect(screen.getByText('Fruit')).toBeInTheDocument();
+        expect(screen.getByText('Berries')).toBeInTheDocument();
+    });
+
+    it('filters products by category when category button is clicked', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.getByText('Apple')).toBeInTheDocument();
+            expect(screen.getByText('Grapes')).toBeInTheDocument();
+        });
+
+        // Click on Fruit category
+        fireEvent.click(screen.getByText('Fruit'));
+
+        // Apple should be visible, Grapes should not
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.queryByText('Grapes')).not.toBeInTheDocument();
+
+        // Click on Berries category
+        fireEvent.click(screen.getByText('Berries'));
+
+        // Grapes should be visible, Apple should not
+        expect(screen.queryByText('Apple')).not.toBeInTheDocument();
+        expect(screen.getByText('Grapes')).toBeInTheDocument();
+
+        // Click on All category
+        fireEvent.click(screen.getByText('All'));
+
+        // Both should be visible
+        expect(screen.getByText('Apple')).toBeInTheDocument();
+        expect(screen.getByText('Grapes')).toBeInTheDocument();
+    });
+
+    it('highlights the active category button', async () => {
+        render(<ProductsPage />);
+
+        await waitFor(() => {
+            expect(screen.queryByText(/loading products/i)).not.toBeInTheDocument();
+        });
+
+        const allButton = screen.getByText('All');
+        const fruitButton = screen.getByText('Fruit');
+
+        // Initially "All" should be active
+        expect(allButton).toHaveClass('active');
+        expect(fruitButton).not.toHaveClass('active');
+
+        // Click on Fruit category
+        fireEvent.click(fruitButton);
+
+        // Now "Fruit" should be active
+        expect(allButton).not.toHaveClass('active');
+        expect(fruitButton).toHaveClass('active');
     });
 });
