@@ -78,7 +78,7 @@ const ContactUsPage = () => {
                             </button>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="contact-form">
+                        <form onSubmit={handleSubmit} className="contact-form" noValidate>
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input
@@ -95,7 +95,7 @@ const ContactUsPage = () => {
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type="text"
+                                    type="email"
                                     id="email"
                                     name="email"
                                     value={formData.email}
