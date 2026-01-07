@@ -9,6 +9,7 @@ const ProductsPage = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const cartContext = useContext(CartContext);
 
     if (!cartContext) {
@@ -56,6 +57,14 @@ const ProductsPage = () => {
         }
     };
 
+    // Get unique categories from products
+    const categories = ['All', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))];
+
+    // Filter products based on selected category
+    const filteredProducts = selectedCategory === 'All' 
+        ? products 
+        : products.filter(p => p.category === selectedCategory);
+
     if (loading) {
         return (
             <div className="app">
@@ -74,8 +83,19 @@ const ProductsPage = () => {
             <main className="main-content">
                 <div className="products-container">
                     <h2>Our Products</h2>
+                    <div className="category-filter">
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
+                                onClick={() => setSelectedCategory(category)}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
                     <div className="products-grid">
-                        {products.map((product) => (
+                        {filteredProducts.map((product) => (
                             <div key={product.id || product.name} className="product-card">
                                 {product.image && (
                                     <img

@@ -4,7 +4,7 @@
     "description": "A juicy red apple",
     "price": 0.5,
     "image": "apple.png",
-    "category": "fruits",
+    "category": "Fruit",
     "inStock": true,
     "reviews": []
 }

@@ -4,7 +4,7 @@
     "description": "A tangy orange",
     "price": 0.75,
     "image": "orange.png",
-    "category": "fruits",
+    "category": "Fruit",
     "inStock": false,
     "reviews": []
 }

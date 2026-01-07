@@ -4,7 +4,7 @@
     "description": "A sweet and juicy pear",
     "price": 0.6,
     "image": "pear.png",
-    "category": "fruits",
+    "category": "Fruit",
     "inStock": true,
     "reviews": []
 }
