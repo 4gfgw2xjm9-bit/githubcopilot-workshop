@@ -7,4 +7,11 @@ describe('Footer', () => {
         render(<Footer />);
         expect(screen.getByText(/© 2025 The Daily Harvest/i)).toBeInTheDocument();
     });
+
+    it('renders Contact Us link', () => {
+        render(<Footer />);
+        const contactLink = screen.getByText('Contact Us');
+        expect(contactLink).toBeInTheDocument();
+        expect(contactLink).toHaveAttribute('href', '/contact');
+    });
 });
