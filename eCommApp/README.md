@@ -14,10 +14,11 @@
 What we achieved together through the GitHub Copilot Labs:
 
 - [**Lab 1-2: Foundations**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-1-walkthrough.md): Initial build and exploration of the React + Vite architecture.
-- [**Lab 3-4: Resilient Testing**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-4-walkthrough.md): Scaled to **91.5% coverage** using self-healing AI agents. 🛡️
-- [**Lab 5: Agentic Coding**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-5-walkthrough.md): Autonomously implemented the **Contact Us** and **Search** features via Issue assignment. 🤖
-- [**Lab 6: External Context**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-6-walkthrough.md): Integrated **MCP** to connect the IDE to live GitHub and Microsoft Learn data. 🔌
-- [**Lab 7: Custom Guardrails**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-7-walkthrough.md): Established project standards via custom instructions and chat modes. ⚖️
+- [**Lab 3: Test Expansion**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-3-walkthrough.md): Handled interactive user states and enhanced documentation. 🧪
+- [**Lab 4: 80% Coverage Goal**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-4-walkthrough.md): Exceeded coverage targets using self-healing AI agents. 🛡️
+- [**Lab 5: Agentic Coding**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-5-walkthrough.md): Autonomously implemented the **Contact Us** and **Search** features. 🤖
+- [**Lab 6: External Context**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-6-walkthrough.md): Integrated **MCP** to connect to live GitHub and Microsoft data. 🔌
+- [**Lab 7: Custom Guardrails**](file:///Users/aaliyah/githubcopilot-workshop/walkthroughs/lab-7-walkthrough.md): Established project standards and custom chat modes. ⚖️
 
 ---
 
