@@ -1,0 +1,125 @@
+
+> shopping-website@0.0.0 test:coverage
+> vitest run --coverage
+
+
+ RUN  v3.2.4 /Users/aaliyah/githubcopilot-workshop/eCommApp
+      Coverage enabled with v8
+
+stderr | src/components/ReviewModal.test.tsx > ReviewModal > returns null if no product is provided
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/ProductsPage.test.tsx > ProductsPage > renders loading state initially
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/ProductsPage.test.tsx > ProductsPage > renders loading state initially
+Warning: An update to ProductsPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at ProductsPage (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/components/ProductsPage.tsx:15:69)
+    at CartProvider (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/context/CartContext.tsx:8:25)
+    at Router (/Users/aaliyah/githubcopilot-workshop/eCommApp/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at BrowserRouter (/Users/aaliyah/githubcopilot-workshop/eCommApp/node_modules/react-router-dom/dist/umd/react-router-dom.development.js:695:7)
+    at AllTheProviders (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/test/test-utils.tsx:12:28)
+Warning: An update to ProductsPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at ProductsPage (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/components/ProductsPage.tsx:15:69)
+    at CartProvider (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/context/CartContext.tsx:8:25)
+    at Router (/Users/aaliyah/githubcopilot-workshop/eCommApp/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at BrowserRouter (/Users/aaliyah/githubcopilot-workshop/eCommApp/node_modules/react-router-dom/dist/umd/react-router-dom.development.js:695:7)
+    at AllTheProviders (/Users/aaliyah/githubcopilot-workshop/eCommApp/src/test/test-utils.tsx:12:28)
+
+stderr | src/components/HomePage.test.tsx > HomePage > renders hero section and calls to action
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/AdminPage.test.tsx > AdminPage > renders admin portal content
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/HomePage.test.tsx (1 test) 179ms
+stderr | src/components/CheckoutModal.test.tsx > CheckoutModal > renders modal with confirm and cancel buttons
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/ProductsPage.test.tsx (4 tests) 507ms
+stderr | src/components/LoginPage.test.tsx > LoginPage > renders the login form
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/ReviewModal.test.tsx (4 tests) 1273ms
+   ✓ ReviewModal > submits a new review  683ms
+   ✓ ReviewModal > calls onClose when close button or backdrop is clicked  339ms
+ ✓ src/components/CartPage.test.tsx (5 tests) 1417ms
+   ✓ CartPage > displays the checkout button when cart has items  479ms
+   ✓ CartPage > renders CheckoutModal when checkout button is clicked  363ms
+ ✓ src/components/CheckoutModal.test.tsx (3 tests) 1503ms
+   ✓ CheckoutModal > renders modal with confirm and cancel buttons  871ms
+   ✓ CheckoutModal > calls onConfirm when confirm button is clicked  344ms
+ ✓ src/components/LoginPage.test.tsx (3 tests) 2191ms
+   ✓ LoginPage > renders the login form  1039ms
+   ✓ LoginPage > shows error message on failed login  546ms
+   ✓ LoginPage > redirects to admin on successful login  604ms
+ ✓ src/components/AdminPage.test.tsx (4 tests) 2022ms
+   ✓ AdminPage > shows error message for invalid input  915ms
+   ✓ AdminPage > activates and ends sale  842ms
+stderr | src/components/Header.test.tsx > Header > renders navigation links
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/Header.test.tsx (1 test) 91ms
+stderr | src/components/Footer.test.tsx > Footer > renders copyright information
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/Footer.test.tsx (1 test) 44ms
+ ✓ src/utils/helpers.test.ts (7 tests) 26ms
+ ✓ src/context/CartContext.test.tsx (4 tests) 43ms
+
+ Test Files  11 passed (11)
+      Tests  37 passed (37)
+   Start at  22:09:17
+   Duration  6.53s (transform 255ms, setup 1.68s, collect 2.67s, tests 9.30s, environment 16.43s, prepare 2.86s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   82.36 |    85.07 |   82.35 |   82.36 |                   
+ src               |       0 |        0 |       0 |       0 |                   
+  App.tsx          |       0 |        0 |       0 |       0 | 1-24              
+  main.tsx         |       0 |        0 |       0 |       0 | 1-13              
+ src/components    |   87.83 |    86.27 |      84 |   87.83 |                   
+  AdminPage.tsx    |     100 |      100 |     100 |     100 |                   
+  CartPage.tsx     |   62.96 |    77.77 |      75 |   62.96 | 14-15,24-28,31-54 
+  ...koutModal.tsx |     100 |      100 |     100 |     100 |                   
+  Footer.tsx       |     100 |      100 |     100 |     100 |                   
+  Header.tsx       |     100 |      100 |     100 |     100 |                   
+  HomePage.tsx     |     100 |      100 |     100 |     100 |                   
+  LoginPage.tsx    |     100 |      100 |     100 |     100 |                   
+  ProductsPage.tsx |   85.43 |       75 |      50 |   85.43 | 15-16,37,46-57    
+  ReviewModal.tsx  |   97.05 |    85.71 |     100 |   97.05 | 33                
+ src/context       |     100 |    88.88 |     100 |     100 |                   
+  CartContext.tsx  |     100 |    88.88 |     100 |     100 | 24                
+ src/types         |       0 |        0 |       0 |       0 |                   
+  index.ts         |       0 |        0 |       0 |       0 |                   
+ src/utils         |     100 |      100 |     100 |     100 |                   
+  helpers.ts       |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------

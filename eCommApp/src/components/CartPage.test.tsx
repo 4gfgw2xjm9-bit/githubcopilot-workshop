@@ -106,4 +106,17 @@ describe('CartPage', () => {
 
         expect(screen.queryByTestId('checkout-modal')).not.toBeInTheDocument();
     });
+
+    it('processes the order and displays success message when checkout is confirmed', () => {
+        renderWithCartContext();
+        fireEvent.click(screen.getByRole('button', { name: /checkout/i }));
+
+        const confirmBtn = screen.getByTestId('confirm-checkout');
+        fireEvent.click(confirmBtn);
+
+        expect(screen.getByText('Your order has been processed!')).toBeInTheDocument();
+        expect(screen.getByText('Test Product 1')).toBeInTheDocument();
+        expect(screen.getByText('Test Product 2')).toBeInTheDocument();
+        expect(mockCartContext.clearCart).toHaveBeenCalled();
+    });
 });
