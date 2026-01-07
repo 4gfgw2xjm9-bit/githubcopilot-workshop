@@ -1,14 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
-import { Product, Review } from '../types';
-import Header from './Header';
-import Footer from './Footer';
+import { useState, useContext } from 'react';
+import { Review } from '../types';
 import ReviewModal from './ReviewModal';
 import { CartContext } from '../context/CartContext';
+import { useProducts } from '../hooks/useProducts';
+import { useToast } from '../context/ToastContext';
+import { ProductGridSkeleton } from './ProductSkeleton';
+import './ProductsPage.css';
 
 const ProductsPage = () => {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const { products, loading, setProducts } = useProducts();
+    const { addToast } = useToast();
+    const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const cartContext = useContext(CartContext);
 
@@ -18,30 +20,10 @@ const ProductsPage = () => {
 
     const { addToCart } = cartContext;
 
-    useEffect(() => {
-        const loadProducts = async () => {
-            try {
-                const productFiles = [
-                    'apple.json',
-                    'grapes.json',
-                    'orange.json',
-                    'pear.json'
-                ];
-                const productPromises = productFiles.map(async (file) => {
-                    const response = await fetch(`products/${file}`);
-                    if (!response.ok) throw new Error(`Failed to load ${file}`);
-                    return await response.json();
-                });
-                const loadedProducts = await Promise.all(productPromises);
-                setProducts(loadedProducts);
-            } catch (error) {
-                console.error('Error loading products:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadProducts();
-    }, []);
+    const handleAddToCart = (product: any) => {
+        addToCart(product);
+        addToast(`${product.name} added to harvest!`, 'success');
+    };
 
     const handleReviewSubmit = (review: Review) => {
         if (selectedProduct) {
@@ -54,6 +36,7 @@ const ProductsPage = () => {
             );
             setProducts(updatedProducts);
             setSelectedProduct(updatedProduct);
+            addToast('Review submitted successfully!', 'success');
         }
     };
 
@@ -61,68 +44,58 @@ const ProductsPage = () => {
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    if (loading) {
-        return (
-            <div className="app">
-                <Header />
-                <main className="main-content">
-                    <div className="loading">Loading products...</div>
-                </main>
-                <Footer />
-            </div>
-        );
-    }
-
     return (
-        <div className="app">
-            <Header />
-            <main className="main-content">
-                <div className="products-container">
-                    <h2>Our Products</h2>
-                    <div className="search-container">
-                        <input
-                            type="text"
-                            placeholder="Search products by name..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="search-input"
-                        />
-                    </div>
-                    {filteredProducts.length === 0 ? (
-                        <div className="no-products-message">No products found</div>
-                    ) : (
-                        <div className="products-grid">
-                            {filteredProducts.map((product) => (
-                                <div key={product.id || product.name} className="product-card">
-                                    {product.image && (
-                                        <img
-                                            src={`products/productImages/${product.image}`}
-                                            alt={product.name}
-                                            className="product-image"
-                                            onClick={() => setSelectedProduct(product)}
-                                        />
-                                    )}
-                                    <div className="product-info">
-                                        <h3 className="product-name">{product.name}</h3>
-                                        <p className="product-price">${product.price.toFixed(2)}</p>
-                                        {product.description && (
-                                            <p className="product-description">{product.description}</p>
-                                        )}
-                                        <button 
-                                            onClick={() => addToCart(product)}
-                                            className={`add-to-cart-btn ${product.inStock ? '' : 'disabled'}`}
-                                            disabled={!product.inStock}
-                                        >
-                                            {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+        <div className="products-container">
+            <h2 className="premium-header">Our Products</h2>
+            <div className="search-container glass-effect" style={{ marginBottom: '2rem', padding: '1rem' }}>
+                <input
+                    type="text"
+                    placeholder="Search fresh products by name..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+            </div>
+
+            {loading ? (
+                <ProductGridSkeleton count={4} />
+            ) : filteredProducts.length === 0 ? (
+                <div className="no-products-message">
+                    <p>No products found in the current harvest. Try another search!</p>
                 </div>
-            </main>
-            <Footer />
+            ) : (
+                <div className="products-grid">
+                    {filteredProducts.map((product) => (
+                        <div key={product.id || product.name} className="product-card glass-effect hover-lift">
+                            {product.image && (
+                                <div className="product-image-wrapper">
+                                    <img
+                                        src={`products/productImages/${product.image}`}
+                                        alt={product.name}
+                                        className="product-image"
+                                        onClick={() => setSelectedProduct(product)}
+                                    />
+                                </div>
+                            )}
+                            <div className="product-info">
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">${product.price.toFixed(2)}</p>
+                                {product.description && (
+                                    <p className="product-description">{product.description}</p>
+                                )}
+                                <button
+                                    onClick={() => handleAddToCart(product)}
+                                    className={`add-to-cart-btn ${product.inStock ? '' : 'disabled'}`}
+                                    disabled={!product.inStock}
+                                >
+                                    {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
             <ReviewModal
                 product={selectedProduct}
                 onClose={() => setSelectedProduct(null)}
@@ -131,5 +104,6 @@ const ProductsPage = () => {
         </div>
     );
 };
+
 
 export default ProductsPage;
